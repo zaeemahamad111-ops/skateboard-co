@@ -1,26 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cream: #FAF7F2;
+  --light-cream: #F0EAD6;
+  --beige: #E8DCC8;
+  --sand: #D4C5A9;
+  --gold: #B8A47A;
+  --charcoal: #1C1C1C;
+  --off-black: #111111;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  /* Native smooth scroll removed to avoid conflict with Lenis */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--cream);
+  color: var(--charcoal);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  /* Force GPU layers for all stacking contexts */
+  -webkit-font-smoothing: antialiased;
 }
+
+
+
+/* Link underline animation */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.35s ease;
+}
+.link-underline:hover::after { width: 100%; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+/* Marquee — GPU-accelerated via translate3d */
+@keyframes marquee-left {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 20s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track.slow {
+  animation-duration: 40s;
+}
+
+/* Floating SVG skate animation */
+@keyframes drift {
+  0%   { transform: translate3d(-8px, 0, 0) rotate(-6deg); opacity: 0.3; }
+  50%  { transform: translate3d(8px, 0, 0) rotate(6deg);  opacity: 0.5; }
+  100% { transform: translate3d(-8px, 0, 0) rotate(-6deg); opacity: 0.3; }
+}
+
+/* Typography helpers */
+.font-bebas     { font-family: 'Bebas Neue', sans-serif; }
+.font-cormorant { font-family: 'Cormorant Garamond', serif; }
+.font-dm        { font-family: 'DM Sans', sans-serif; }
