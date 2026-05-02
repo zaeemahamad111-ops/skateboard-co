@@ -17,7 +17,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ delay: index * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
       className="group relative"
       style={{  }}
     >
@@ -34,7 +34,7 @@ function ProductCard({ product, index }: { product: typeof products[0]; index: n
         >
           <motion.div
             whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
             style={{ position: "absolute", inset: 0 }}
           >
             <Image

@@ -9,7 +9,7 @@ const wordVariants = {
   hidden: { y: "110%", opacity: 0 },
   visible: (i: number) => ({
     y: 0, opacity: 1,
-    transition: { delay: 0.5 + i * 0.1, duration: 0.6, ease: [0.76, 0, 0.24, 1] },
+    transition: { delay: 0.5 + i * 0.1, duration: 0.6, ease: [0.76, 0, 0.24, 1] as const },
   }),
 };
 

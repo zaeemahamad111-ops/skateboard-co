@@ -75,7 +75,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
 
   const letterVariants = {
     hidden: { opacity: 0, y: 24 },
-    visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.05, duration: 0.4, ease: [0.4, 0, 0.2, 1] } }),
+    visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.05, duration: 0.4, ease: [0.4, 0, 0.2, 1] as const } }),
   };
 
   return (

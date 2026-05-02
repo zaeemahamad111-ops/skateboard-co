@@ -22,7 +22,7 @@ function SplitText({ text }: { text: string }) {
       <motion.span
         initial={{ x: 80, opacity: 0 }}
         animate={isInView ? { x: 0, opacity: 1 } : {}}
-        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] as const }}
         style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(3rem, 10vw, 10rem)", color: "var(--cream)", lineHeight: 0.9 }}
       >
         {text.slice(0, half)}
@@ -30,7 +30,7 @@ function SplitText({ text }: { text: string }) {
       <motion.span
         initial={{ x: -80, opacity: 0 }}
         animate={isInView ? { x: 0, opacity: 1 } : {}}
-        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+        transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] as const }}
         style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(3rem, 10vw, 10rem)", color: "var(--gold)", lineHeight: 0.9 }}
       >
         {text.slice(half)}

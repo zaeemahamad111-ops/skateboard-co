@@ -40,7 +40,7 @@ export default function ProductHighlight() {
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] as const }}
           style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center", height: "500px" }}
         >
           <motion.div
@@ -66,7 +66,7 @@ export default function ProductHighlight() {
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ delay: 0.2, duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ delay: 0.2, duration: 0.8, ease: [0.4, 0, 0.2, 1] as const }}
         >
           <p
             style={{

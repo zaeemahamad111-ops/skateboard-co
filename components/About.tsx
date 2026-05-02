@@ -63,7 +63,7 @@ export default function About() {
         <motion.div
           initial={{ clipPath: "inset(0 100% 0 0)" }}
           animate={isQuoteInView ? { clipPath: "inset(0 0% 0 0)" } : {}}
-          transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
+          transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] as const }}
         >
           <p style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontSize: "clamp(1.4rem, 3vw, 2.8rem)", color: "var(--cream)", lineHeight: 1.45, maxWidth: 900, margin: "0 auto" }}>
             "The concrete doesn't care who you are. It just asks: are you ready to push?"
@@ -83,7 +83,7 @@ function ParagraphBlock({ para, index }: { para: typeof paragraphs[0]; index: nu
 
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 32 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const, delay: index * 0.1 }}
       style={{ position: "relative", marginBottom: "4.5rem", paddingLeft: "1.5rem" }}>
       <span style={{ 
         position: "absolute", 
