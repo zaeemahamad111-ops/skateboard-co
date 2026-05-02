@@ -43,10 +43,13 @@ export default function VideoReel() {
         start: "top top",
         end: () => `+=${getScrollAmount() * -1}`, // The scroll distance equals the horizontal scroll amount
         pin: true,
-        scrub: 1, // Smooth scrubbing
-        invalidateOnRefresh: true, // Recalculate on resize
+        scrub: true, // Use true instead of 1 when using Lenis for snappier response
+        invalidateOnRefresh: true, 
       },
     });
+
+    // Performance optimization for the track
+    gsap.set(track, { willChange: "transform" });
 
     return () => {
       tween.kill();

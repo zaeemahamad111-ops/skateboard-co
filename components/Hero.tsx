@@ -60,8 +60,8 @@ export default function Hero() {
                   fontStyle: "italic",
                   color: "#E8DCC8", 
                   letterSpacing: "-0.02em", 
-                  lineHeight: 1 
-                }}>
+                  lineHeight: 1,
+                  willChange: "transform, opacity"                }}>
                 {word}
               </motion.span>
             ))}
@@ -78,8 +78,8 @@ export default function Hero() {
                 color: "#FAF7F2", 
                 letterSpacing: "-0.03em", 
                 lineHeight: 0.8, 
-                display: "block" 
-              }}>
+                display: "block",
+                willChange: "transform, opacity"              }}>
               {word}
             </motion.span>
           ))}

@@ -121,6 +121,7 @@ export default function Testimonials() {
                 padding: "2.5rem",
                 boxShadow: isActive ? "0 24px 60px rgba(28,28,28,0.15)" : "0 8px 24px rgba(28,28,28,0.06)",
                 border: "1px solid rgba(184,164,122,0.15)",
+                willChange: "transform, opacity",
               }}
             >
               {/* Gold quote mark */}

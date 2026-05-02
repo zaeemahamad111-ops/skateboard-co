@@ -81,3 +81,15 @@ body {
 .font-bebas     { font-family: 'Bebas Neue', sans-serif; }
 .font-cormorant { font-family: 'Cormorant Garamond', serif; }
 .font-dm        { font-family: 'DM Sans', sans-serif; }
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+  .desktop-only { display: none !important; }
+  .mobile-only  { display: flex !important; }
+}
+
+@media (min-width: 769px) {
+  .desktop-only { display: flex !important; }
+  .mobile-only  { display: none !important; }
+}
+

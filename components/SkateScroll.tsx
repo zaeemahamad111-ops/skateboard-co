@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 export default function SkateScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const lastIndex = useRef<number>(-1);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -49,9 +50,13 @@ export default function SkateScroll() {
       });
     }, 100);
 
+
     const render = (index: number) => {
+      if (index === lastIndex.current) return;
+      lastIndex.current = index;
+
       const canvas = canvasRef.current;
-      const ctx = canvas?.getContext("2d");
+      const ctx = canvas?.getContext("2d", { alpha: false });
       const img = images.current[index];
 
       if (canvas && ctx && img && img.complete) {
@@ -106,7 +111,7 @@ export default function SkateScroll() {
 
     // Subscribe to framer-motion scroll updates
     const unsubscribe = frameIndex.on("change", (latest) => {
-      render(Math.round(latest));
+      requestAnimationFrame(() => render(Math.round(latest)));
     });
 
     let resizeTimer: NodeJS.Timeout;

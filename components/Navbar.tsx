@@ -49,7 +49,7 @@ export default function Navbar() {
           left: 0,
           right: 0,
           zIndex: 9993,
-          padding: isSolid ? "0.3rem 2rem" : "0.5rem 2rem",
+          padding: isSolid ? "0.3rem 1.25rem" : "0.5rem 1.25rem",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -59,6 +59,7 @@ export default function Navbar() {
           transition: "all 0.4s cubic-bezier(0.4,0,0.2,1)",
         }}
       >
+        {/* Adjusted padding for mobile (1.25rem instead of 2rem) and removed fixed gap to allow space-between to work */}
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
           <Image
             src={showDarkNavbar ? "/images/brand/logo_black.png" : "/images/brand/logo_white.png"}
@@ -70,7 +71,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Links */}
-        <div style={{ display: "flex", gap: "2.5rem", alignItems: "center" }}>
+        <div className="desktop-only" style={{ gap: "2.5rem", alignItems: "center" }}>
           <button
             onClick={openCart}
             className="link-underline"
@@ -133,23 +134,50 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-          style={{
-            display: "none",
-            background: "none",
-            border: "none",
-            flexDirection: "column",
-            gap: "5px",
-          }}
-          className="mobile-menu-btn"
-        >
-          <span style={{ display: "block", width: 24, height: 1.5, background: showDarkNavbar ? "var(--charcoal)" : "var(--cream)" }} />
-          <span style={{ display: "block", width: 24, height: 1.5, background: showDarkNavbar ? "var(--charcoal)" : "var(--cream)" }} />
-          <span style={{ display: "block", width: 16, height: 1.5, background: showDarkNavbar ? "var(--charcoal)" : "var(--cream)" }} />
-        </button>
+        {/* Mobile Actions (Cart + Menu) */}
+        <div className="mobile-only" style={{ alignItems: "center", gap: "1.25rem" }}>
+          <button
+            onClick={openCart}
+            style={{
+              background: "none",
+              border: "none",
+              color: showDarkNavbar ? "var(--charcoal)" : "var(--cream)",
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: "0.8rem",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+            }}
+          >
+            CART ({items.length})
+          </button>
+          
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+            style={{
+              background: "none",
+              border: "none",
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px",
+              padding: "5px",
+              marginRight: "-5px"
+            }}
+          >
+            <motion.span 
+              animate={menuOpen ? { rotate: 45, y: 6.5 } : { rotate: 0, y: 0 }}
+              style={{ display: "block", width: 24, height: 1.5, background: showDarkNavbar ? "var(--charcoal)" : "var(--cream)", originX: "50%" }} 
+            />
+            <motion.span 
+              animate={menuOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
+              style={{ display: "block", width: 24, height: 1.5, background: showDarkNavbar ? "var(--charcoal)" : "var(--cream)" }} 
+            />
+            <motion.span 
+              animate={menuOpen ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }}
+              style={{ display: "block", width: 24, height: 1.5, background: showDarkNavbar ? "var(--charcoal)" : "var(--cream)", originX: "50%" }} 
+            />
+          </button>
+        </div>
       </motion.nav>
 
       {/* Explore Dropdown / Overlay */}
